@@ -7,7 +7,8 @@ function CreatePortfolio() {
         jobTitle:'',
         picture:'',
         description:''
-    })
+    });
+    
     
     console.log(portfolioInfo)
     function handelChange(event){
@@ -25,14 +26,14 @@ function CreatePortfolio() {
               return {
                 fullName: prevValue.fullName,
                 jobTitle: value,
-                picture: prevValue.pictureURL,
+                picture: prevValue.picture,
                 description: prevValue.description
               };
-            } else if (name === "pictureURL") {
+            } else if (name === "picture") {
               return {
                 fullName: prevValue.fullName,
                 jobTitle: prevValue.jobTitle,
-                pictureURL: value,
+                picture: value,
                 description: prevValue.description
               };
             }else if (name === "description") {
@@ -44,6 +45,17 @@ function CreatePortfolio() {
               };
             }
           });
+    }
+    console.log(portfolioInfo)
+    const createPortfolio = (event) =>{
+      console.log(portfolioInfo)
+      event.preventDefault();
+      axios
+      .post('/api/portfolio', portfolioInfo)
+      .then(response =>{
+        console.log("data is sent")
+      })
+      .catch(error => alert(error.message));
     }
   return (
     <div>
@@ -60,7 +72,7 @@ function CreatePortfolio() {
             value={portfolioInfo.jobTitle} 
         />
         <input 
-            name='pictureURL'
+            name='picture'
             placeholder='Picture URL' 
             onChange={handelChange}
             values={portfolioInfo.picture}
@@ -71,7 +83,7 @@ function CreatePortfolio() {
             onChange={handelChange}
             values={portfolioInfo.description}
         />
-        <button>submit</button>
+        <button onClick={createPortfolio}>submit</button>
     </div>
   )
 }

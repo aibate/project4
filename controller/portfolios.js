@@ -21,11 +21,12 @@ router.get('/db', (req,res)=>{
     return res.json(dbRes.rows);
   });
 })
-router.post('/api/createPortfolio', (req, res) =>{
-  
+router.post('/api/portfolio', (req, res) =>{
+  const { fullname, job_title, picture, description } =res.body;
   const sql = `INSERT INTO portfolios (fullname, picture, job_title, description) VALUES($1, $2, $3, $4)`;
 
-  db.query(sql, [email, hashedPassword]).then(() => {
+  db.query(sql, [fullname, picture,job_title,description ]).then(() => {
+      console.log(res.json)
       res.json({});
     }).catch((err) => {
       res.status(500).json({});
