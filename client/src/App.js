@@ -9,16 +9,16 @@ import React, { useState, useEffect } from 'react';
 
 function App() {
   const [ loginStatus, setLoginStatus] = useState(false);
-  // const [ backendData, setBackendData] = useState([{}]);
-  // useEffect(() => {
-  //   fetch('/api/test').then(
-  //     response => response.json()
-  //   ).then(
-  //     data => {
-  //       setBackendData(data);
-  //     }
-  //   )
-  // }, [])
+  const [ backendData, setBackendData] = useState([{}]);
+  useEffect(() => {
+    fetch('/api/test').then(
+      response => response.json()
+    ).then(
+      data => {
+        setBackendData(data);
+      }
+    )
+  }, [])
   
   return (
     <div className="App">
