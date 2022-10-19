@@ -26,7 +26,7 @@ app.use(
     })
  );
 
-app.get("/api/test", (req, res)=> res.json({result: "ok"}));
+app.get("/api/test", (req, res)=> res.json({result: "Ai You did it!"}));
 
 app.get('*', (req, res)=> {
     request.setHeader('Content-Type', 'text/html');
