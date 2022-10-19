@@ -29,7 +29,7 @@ app.use(
 app.get("/api/test", (req, res)=> res.json({result: "Ai You did it!"}));
 
 app.get('*', (req, res)=> {
-    req.setHeader('Content-Type', 'text/html');
+    res.setHeader('Content-Type', 'text/html');
     fs.createReadStream(`${__dirname}/client/build/index.html`).pipe(res);
 })
 
