@@ -1,72 +1,71 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 
+
 function CreatePortfolio() {
     const [ portfolioInfo, setPortfolioInfo] = useState({
-        fullName:'',
-        jobTitle:'',
+        fullname:'',
+        job_title:'',
         picture:'',
         description:''
     });
     
-    
-    console.log(portfolioInfo)
     function handelChange(event){
         const { value, name } = event.target;
         setPortfolioInfo((prevValue) => {
             console.log(prevValue);
-            if (name === "fullName") {
+            if (name === "fullname") {
               return {
-                fullName: value,
-                jobTitle: prevValue.jobTitle,
+                fullname: value,
+                job_title: prevValue.job_title,
                 picture: prevValue.picture,
                 description: prevValue.description
               };
-            } else if (name === "jobTitle") {
+            } else if (name === "job_title") {
               return {
-                fullName: prevValue.fullName,
-                jobTitle: value,
+                fullname: prevValue.fullname,
+                job_title: value,
                 picture: prevValue.picture,
                 description: prevValue.description
               };
             } else if (name === "picture") {
               return {
-                fullName: prevValue.fullName,
-                jobTitle: prevValue.jobTitle,
+                fullname: prevValue.fullname,
+                job_title: prevValue.job_title,
                 picture: value,
                 description: prevValue.description
               };
             }else if (name === "description") {
               return {      
-                fullName: prevValue.fullName,
-                jobTitle: prevValue.jobTitle,
+                fullname: prevValue.fullname,
+                job_title: prevValue.job_title,
                 picture: prevValue.picture,
                 description: value
               };
             }
           });
     }
-    console.log(portfolioInfo)
+    
     const createPortfolio = (event) =>{
-      console.log(portfolioInfo)
-      event.preventDefault();
+      
+      // event.preventDefault();
       axios
-      .post('/api/portfolio', portfolioInfo)
-      .then(response =>{
-        console.log("data is sent")
+      .post('http://localhost:3001/api/portfolio', portfolioInfo)
+      .then(()=>{
+        window.location='/portfolio/view';
       })
       .catch(error => alert(error.message));
     }
   return (
     <div>
         <input 
-            name='fullName'
+            name='fullname'
             placeholder="Full Name"
             onChange={handelChange} 
-            value={portfolioInfo.fullName}
+            value={portfolioInfo.fullname}
         />
         <input 
-            name='jobTitle'
+            name='job_title'
             placeholder='Job Title'
             onChange={handelChange}
             value={portfolioInfo.jobTitle} 

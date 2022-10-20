@@ -1,56 +1,35 @@
 const db = require('../database/db.js')
 const express = require('express');
-// const app = express();
 const router = express.Router();
 
-// this /db route is testing purpose (checking json data)
-router.get('/db', (req,res)=>{
-  const userId = req.session.users_id;
-  const sql = `
-      SELECT *, c.users_id as gift_receiver_id, c.name as gift_receiver_name
-      FROM gifts as a
-      inner join relationship as b on a.relationship_id = b.relationship_id
-      inner join users as c on b.gift_receiver = c.users_id
-      inner join users as d on b.gift_giver = d.users_id
-      inner join presents as e on a.present_id = e.present_id
-      inner join relation as f on b.relation_id = f.relation_id
-      inner join events as g on a.event_id = g.event_id
-      WHERE b.gift_giver = 1
-    `;
-  db.query(sql).then((dbRes)=>{
-    return res.json(dbRes.rows);
-  });
-})
+
 router.post('/api/portfolio', (req, res) =>{
-  const { fullname, job_title, picture, description } =res.body;
+  console.log(req.body)
+  const { 
+    fullname, 
+    job_title, 
+    picture, 
+    description
+   } =req.body;
   const sql = `INSERT INTO portfolios (fullname, picture, job_title, description) VALUES($1, $2, $3, $4)`;
 
-  db.query(sql, [fullname, picture,job_title,description ]).then(() => {
+  db.query(sql, [ fullname, picture, job_title , description ]).then(() => {
       console.log(res.json)
       res.json({});
     }).catch((err) => {
       res.status(500).json({});
     });
 });
-//API for getting portfolio information
-router.get('/api/giveGiftsList', (req, res) =>{
 
-  const userId = req.session.users_id;
-  const sql = `
-      SELECT *, c.users_id as gift_receiver_id, c.name as gift_receiver_name
-      FROM gifts as a
-      inner join relationship as b on a.relationship_id = b.relationship_id
-      inner join users as c on b.gift_receiver = c.users_id
-      inner join users as d on b.gift_giver = d.users_id
-      inner join presents as e on a.present_id = e.present_id
-      inner join relation as f on b.relation_id = f.relation_id
-      inner join events as g on a.event_id = g.event_id
-      WHERE b.gift_giver = $1
-      ORDER BY a.gift_date DESC;
-    `;
-  db.query(sql,[userId]).then((dbRes)=>{
-    res.json(dbRes.rows);
+//API for getting All portfolios information
+router.get('/api/portfolio', (req, res) =>{
+  const id = 1;
+  const sql = `SELECT * FROM portfolios where id=$1`;
+  db.query(sql,[id]).then((dbRes)=>{
+    console.log(res.json(dbRes.rows))
+    return res.json(dbRes.rows);
   });
+  
 });
 
 //API for future gift 
@@ -187,7 +166,7 @@ router.get('/api/pendingGift', (req, res) =>{
       and a.gift_status = 'PENDING'
       ORDER BY a.gift_date DESC `;
   db.query(sql, [users_id]).then(dbRes =>{
-    return res.json(dbRes.rows);
+    return res.send(dbRes.rows);
   })
 })
 //API to get all events from the events table
