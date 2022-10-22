@@ -50,7 +50,7 @@ function CreatePortfolio() {
       
       // event.preventDefault();
       axios
-      .post('http://localhost:3001/api/portfolio', portfolioInfo)
+      .post('/api/portfolio', portfolioInfo)
       .then(()=>{
         window.location='/portfolio/view';
       })

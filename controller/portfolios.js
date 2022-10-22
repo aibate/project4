@@ -23,11 +23,11 @@ router.post('/api/portfolio', (req, res) =>{
 
 //API for getting All portfolios information
 router.get('/api/portfolio', (req, res) =>{
-  const id = 1;
-  const sql = `SELECT * FROM portfolios where id=$1`;
-  db.query(sql,[id]).then((dbRes)=>{
-    console.log(res.json(dbRes.rows))
-    return res.json(dbRes.rows);
+  
+  const sql = "SELECT * FROM portfolios";
+  db.query(sql).then((dbRes)=>{
+    // console.log(res.json(dbRes.rows))
+    res.json(dbRes.rows);
   });
   
 });

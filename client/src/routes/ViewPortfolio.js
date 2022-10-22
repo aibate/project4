@@ -10,21 +10,13 @@ function ViewPortfolio() {
   },[])
   
   const getData =  () =>{
-     const url = 'http://localhost:3001/api/portfolio'
+     const url = '/api/portfolio'
       axios.get(url).then(response => {
         setAllPortfolioInfo(response.data);
       })
     } 
   
-
-
-  
-
-  
-
   console.log(AllPortfilisInfo)
-
-
 
   return (
     <div>View Portfolio</div>

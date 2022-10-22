@@ -9,8 +9,8 @@ CREATE TABLE users (
 CREATE TABLE portfolios (
     portfolio_id SERIAL PRIMARY KEY,
     fullname TEXT NOT NULL,
-    picture TEXT,
     job_title TEXT,
+    picture TEXT,
     description TEXT
 );
 
