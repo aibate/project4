@@ -21,6 +21,17 @@ router.post('/api/contact', (req, res) =>{
       });
 });
 
+router.get('/api/contact/:id', (req, res)=>{
+  const portfolio_id = req.params.id;
+  console.log(portfolio_id)
+  const sql = `SELECT * FROM contacts WHERE portfolio_id = $1`;
+  db.query(sql, [ portfolio_id]).then((dbRes)=>{
+    res.json(dbRes.rows);
+  }).catch((error)=>{
+    res.sendStatus(500)
+  })
+
+})
 
 
 
