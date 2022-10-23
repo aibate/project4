@@ -2,7 +2,6 @@ const db = require('../database/db.js')
 const express = require('express');
 const router = express.Router();
 
-
 router.post('/api/portfolio', (req, res) =>{
   console.log(req.body)
   const { 
@@ -28,53 +27,53 @@ router.get('/api/portfolio', (req, res) =>{
   db.query(sql).then((dbRes)=>{
     // console.log(res.json(dbRes.rows))
     res.json(dbRes.rows);
+  }).catch((err)=>{
+    res.sendStatus(500);
   });
-  
 });
 
-//API for future gift 
-router.get('/api/futureGiftsList', (req, res) =>{
-  const userId = req.session.users_id;
-  let date_ob = new Date();
-  // current date
-  // adjust 0 before single digit date
-  let date = ("0" + date_ob.getDate()).slice(-2);
-
-  // current month
-  let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-
-  // current year
-  let year = date_ob.getFullYear();
-
-  // prints date in YYYY-MM-DD format
-  const today = year + "-" + month + "-" + date;
-
-  const sql = `
-      SELECT *, c.users_id as gift_receiver_id, c.name as gift_receiver_name
-      FROM gifts as a
-      inner join relationship as b on a.relationship_id = b.relationship_id
-      inner join users as c on b.gift_receiver = c.users_id
-      inner join users as d on b.gift_giver = d.users_id
-      inner join presents as e on a.present_id = e.present_id
-      inner join relation as f on b.relation_id = f.relation_id
-      WHERE b.gift_giver = $1
-      and a.gift_date > $2
-    `;
-  db.query(sql,[userId, today]).then((dbRes)=>{
+//API to get portfolio information based on portfolio_id
+router.get('/api/portfolio/:id', (req, res) =>{
+  const portfolio_id = req.params.id;
+  console.log(portfolio_id);
+  const sql = 'SELECT * FROM portfolios WHERE portfolio_id = $1'
+  db.query(sql,[portfolio_id]).then((dbRes)=>{
     res.json(dbRes.rows);
+  }).catch((err)=>{
+    res.sendStatus(500);
   });
 });
 
-// API for change status PENDING => GIVEN
-router.put('/api/giftsStatus/:id', (req, res) =>{
-  const id = req.params.id;
-  const sql = `UPDATE gifts SET gift_status = 'GIVEN' WHERE gift_id=$1`
-  db.query(sql, [id]).then((dbRes)=>{
+// API for update portfolio information based on portfolio_id
+router.put('/api/portfolio/:id', (req, res) =>{
+  const portfolio_id = req.params.id;
+  console.log(req.body)
+  const { 
+    fullname, 
+    job_title, 
+    picture, 
+    description
+   } =req.body;
+  const sql = `UPDATE portfolios SET fullname=$1, job_title=$2, picture=$3, description=$4 WHERE portfolio_id=$5`
+  db.query(sql, [fullname,job_title,picture, description ,portfolio_id]).then((dbRes)=>{
     res.sendStatus(200);
   }).catch((err)=>{
     res.sendStatus(500);
   });
 });
+
+// API for delete portfolio based on the portfolio_id
+router.delete('/api/portfolio/:id', (req, res) => {
+    const portfolio_id = req.params.id
+    const sql = `DELETE FROM portfolios WHERE portfolio_id = $1`;
+    db.query(sql, [portfolio_id]).then((dbRes)=>{
+      res.sendStatus(200);
+    })
+    .catch((err)=>{
+      res.status(500).json({});
+    });
+  });
+
 
 // API for update gift and present
 router.put('/api/gifts/:id', (req, res) =>{

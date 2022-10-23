@@ -6,6 +6,7 @@ const db = require('./database/db');
 const { expressSession, pgSession } = require('./session');
 const usersController = require('./controller/users');
 const portfoliosController = require('./controller/portfolios')
+const enquiryController = require('./controller/enquiries');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(express.json());
 app.use(express.static('./client/build'))
 app.use('/', usersController);
 app.use('/', portfoliosController);
+app.use('/', enquiryController);
 app.use(
     expressSession({
       store: new pgSession({

@@ -1,10 +1,12 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 function ViewPortfolio() {
-  const [ AllPortfilisInfo, setAllPortfolioInfo ] = useState([]);
-
+  // store all portfolio in state
+  const [ AllPortfoliosInfo, setAllPortfolioInfo ] = useState([]);
+  // when this component is mounted, then fetch data from backend by using uesEffect
   useEffect(() =>{
     getData();
   },[])
@@ -16,10 +18,37 @@ function ViewPortfolio() {
       })
     } 
   
-  console.log(AllPortfilisInfo)
+ const deletePortfolio = (event) => {
+    event.preventDefault();
+    console.log(event.target.id)
+    const url = `/api/portfolio/${event.target.id}`
+    console.log(event.target.id, url)
+    axios.delete(url).then(() =>{
+      window.location = "/portfolio/view"
+    })
+  } 
 
   return (
-    <div>View Portfolio</div>
+    <div>
+      <h1>View Portfolios</h1>
+      <ul>  
+          {AllPortfoliosInfo.map((onePortfolioInfo) => {
+            return(
+              <li key={onePortfolioInfo.portfolio_id}>
+                <Link to={ `/portfolio/view/${onePortfolioInfo.portfolio_id}`}>
+                  {onePortfolioInfo.fullname}
+                </Link>
+                <Link className='btn btn-success' to={`/portfolio/update/${onePortfolioInfo.portfolio_id}`} >Update</Link>
+                <button id={onePortfolioInfo.portfolio_id}className='btn btn-danger' onClick={deletePortfolio}>Delete</button>
+                <Link className='btn btn-success' to={`/client/${onePortfolioInfo.portfolio_id}`} >Share</Link>
+                <Link className='btn btn-success' to={`/inbox/${onePortfolioInfo.portfolio_id}/`} >Inbox</Link>
+              </li>
+            )
+          })}
+      </ul>
+      <Outlet/>
+    </div>
+    
   )
 }
 

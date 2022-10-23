@@ -1,32 +1,39 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DashBoard from "./routes/DashBoard";
-import Portfolio from "./routes/Portfolio";
-
+import CreatePortfolio from "./routes/CreatePortfolio";
+import ViewPortfolio from "./routes/ViewPortfolio";
+import SinglePortfolioView from "./routes/SinglePortfoiloView";
+import PortfolioMenu from "./routes/PortfolioMenu";
+import UpdatePortfolio from "./routes/UpdatePortfolio";
+import SharePortfolio from "./routes/SharePortfolio";
+import Inbox from "./components/Inbox";
 
 import './App.css';
-import React, { useState, useEffect } from 'react';
-
 
 function App() {
-  const [ loginStatus, setLoginStatus] = useState(false);
-  // const [ backendData, setBackendData] = useState([{}]);
-  // useEffect(() => {
-  //   fetch('/api/test').then(
-  //     response => response.json()
-  //   ).then(
-  //     data => {
-  //       setBackendData(data);
-  //     }
-  //   )
-  // }, [])
-  
+    
   return (
     <div className="App">
       <p></p>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<DashBoard/>}></Route>
-          <Route path="/portfolio/*" element={<Portfolio/>}></Route>
+          <Route path="/client" >
+            <Route path=":id" element={<SharePortfolio/>}/>
+          </Route>
+          <Route path="/inbox" >
+            <Route path=":id" element={<Inbox/>}/>
+          </Route>
+          <Route path="/portfolio" element={<PortfolioMenu/>}>
+            <Route path="add" element={<CreatePortfolio />}/>
+            <Route path="update">
+              <Route path=":id" element={<UpdatePortfolio/>} />
+            </Route>
+            <Route path="view">
+              <Route index element={<ViewPortfolio />}/>
+              <Route path=":id" element={<SinglePortfolioView/>} />
+            </Route>
+          </Route>
         </Routes>
       </BrowserRouter>
       

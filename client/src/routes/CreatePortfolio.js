@@ -47,8 +47,6 @@ function CreatePortfolio() {
     }
     
     const createPortfolio = (event) =>{
-      
-      // event.preventDefault();
       axios
       .post('/api/portfolio', portfolioInfo)
       .then(()=>{
