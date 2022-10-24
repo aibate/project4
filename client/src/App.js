@@ -21,7 +21,7 @@ function App() {
           <Route path="/client" >
             <Route path=":id" element={<SharePortfolio/>}/>
           </Route>
-          <Route path="/inbox" >
+          <Route path="/inbox" element={<PortfolioMenu/>}>
             <Route path=":id" element={<Inbox/>}/>
           </Route>
           <Route path="/portfolio" element={<PortfolioMenu/>}>

@@ -4,6 +4,7 @@ import { useState, useEffect }  from 'react'
 import axios from 'axios'
 import SinglePortfolioViewContainer from './SinglePortfolioViewContainer';
 import Contact from '../components/Contact';
+import Modal from '../components/Modal';
 
 function SharePortfolio() {
   const {id} = useParams()
@@ -17,7 +18,7 @@ function SharePortfolio() {
   useEffect(()=>{
     getPortfolioInfoWithId()
   },[])
-  
+  const [ openModal, setOpenModal ] = useState(false)
 
   const getPortfolioInfoWithId = () => {
     const url = `/api/portfolio/${id}`;
@@ -36,7 +37,8 @@ function SharePortfolio() {
         key={portfolioInfo[0].portfolio_id}
         id={portfolioInfo[0].portfolio_id} 
         />
-        <Contact />
+        <Contact handelContact={setOpenModal}/>
+        {openModal && <Modal />}
     </div>
   )
 }

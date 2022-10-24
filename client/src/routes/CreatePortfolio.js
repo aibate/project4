@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import axios from 'axios';
 
 
@@ -61,26 +61,36 @@ function CreatePortfolio() {
             placeholder="Full Name"
             onChange={handelChange} 
             value={portfolioInfo.fullname}
+            data-testid="nameInput"
         />
         <input 
             name='job_title'
             placeholder='Job Title'
             onChange={handelChange}
             value={portfolioInfo.jobTitle} 
+            data-testid="titleInput"
         />
         <input 
             name='picture'
             placeholder='Picture URL' 
             onChange={handelChange}
             values={portfolioInfo.picture}
+            data-testid="pictureInput"
         />
         <textarea 
             name='description' 
             placeholder='Description'
             onChange={handelChange}
             values={portfolioInfo.description}
+            data-testid="descriptionTextarea"
         />
-        <button onClick={createPortfolio}>submit</button>
+        <button 
+          className="btn btn-primary" 
+          onClick={createPortfolio}
+          data-testid="submitBtn"
+        >
+          Submit
+        </button>
     </div>
   )
 }

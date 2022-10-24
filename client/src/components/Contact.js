@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Modal from './Modal';
 
-function Contact() {
+function Contact(props) {
     const {id} = useParams()
     const [ enquiryDetail, setEnquiryDetail] = useState({
         portfolio_id: id,
@@ -43,35 +43,43 @@ function Contact() {
         })
     }
     function createEnquiry(){
+        props.handelContact(true)
         axios
         .post("/api/contact", enquiryDetail )
         .then(()=>{
-        
+            
         })
         .catch(error => alert(error.message));
     }
     console.log(enquiryDetail)
   return (
     <div>
-        <input 
-            name='client_name'
-            placeholder='Full Name'
-            onChange={handelChange}
-            value={enquiryDetail.client_name} 
-        />
-        <input 
-            name='email'
-            placeholder='Email Address' 
-            onChange={handelChange}
-            values={enquiryDetail.email}
-        />
-        <textarea 
-            name='enquiry' 
-            placeholder='Enquiry'
-            onChange={handelChange}
-            values={enquiryDetail.enquiry}
-        />
-        <button onClick={createEnquiry}>Submit</button>
+        <div className='<div class="input-group mb-3">'>
+            <input 
+                name='client_name'
+                placeholder='Full Name'
+                onChange={handelChange}
+                value={enquiryDetail.client_name} 
+                />
+        </div>    
+        <div className='<div class="input-group mb-3">'>
+            <input 
+                name='email'
+                placeholder='Email Address' 
+                onChange={handelChange}
+                values={enquiryDetail.email}
+                />
+        </div>    
+        <div className='<div class="input-group mb-3">'>
+            <textarea 
+                name='enquiry' 
+                placeholder='Enquiry'
+                onChange={handelChange}
+                values={enquiryDetail.enquiry}
+                />
+        </div>    
+        <button className="btn btn-primary" onClick={createEnquiry}>Submit</button>
+        
     </div>
    
   )

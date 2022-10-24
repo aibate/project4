@@ -39,9 +39,9 @@ function ViewPortfolio() {
                   {onePortfolioInfo.fullname}
                 </Link>
                 <Link className='btn btn-success' to={`/portfolio/update/${onePortfolioInfo.portfolio_id}`} >Update</Link>
-                <button id={onePortfolioInfo.portfolio_id}className='btn btn-danger' onClick={deletePortfolio}>Delete</button>
-                <Link className='btn btn-success' to={`/client/${onePortfolioInfo.portfolio_id}`} >Share</Link>
-                <Link className='btn btn-success' to={`/inbox/${onePortfolioInfo.portfolio_id}/`} >Inbox</Link>
+                <button id={onePortfolioInfo.portfolio_id} className='btn btn-danger' onClick={deletePortfolio}>Delete</button>
+                <Link className="btn btn-info" to={`/client/${onePortfolioInfo.portfolio_id}`} >Share</Link>
+                <Link className="btn btn-primary" to={`/inbox/${onePortfolioInfo.portfolio_id}/`} >Inbox</Link>
               </li>
             )
           })}

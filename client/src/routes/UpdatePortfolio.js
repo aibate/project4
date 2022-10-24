@@ -62,7 +62,7 @@ function UpdatePortfolio() {
     console.log(url)
     axios.put(url, portfolioInfo)
     .then(() => {
-      window.location=`portfolio/view/${id}`
+      window.location=`/portfolio/view/${id}`
     })
   };
 
@@ -107,7 +107,7 @@ function UpdatePortfolio() {
       </div>
       
       
-      <button onClick={updatePortfolio}>Update</button>
+      <button className='btn btn-success' onClick={updatePortfolio}>Update</button>
       
     </div>
   )
