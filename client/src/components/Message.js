@@ -12,7 +12,7 @@ function Message(props) {
             <h6 className='card-subtitle mb-2 text-muted' data-testid="clientEmail">Email: {email}</h6>
             <p className='card-text' data-testid="enquiry">Comment: {enquiry}</p>
             
-        </div>       
+            </div> 
        </div>
     </div>
   )

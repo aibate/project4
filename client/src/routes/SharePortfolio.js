@@ -5,6 +5,8 @@ import axios from 'axios'
 import SinglePortfolioViewContainer from './SinglePortfolioViewContainer';
 import Contact from '../components/Contact';
 import Modal from '../components/Modal';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function SharePortfolio() {
   const {id} = useParams()
@@ -29,7 +31,9 @@ function SharePortfolio() {
   console.log(portfolioInfo[0].fullname)
   return (
     <div>
-        <SinglePortfolioViewContainer 
+       <Row lg={2}>
+       <Col className="d-flex">
+       <SinglePortfolioViewContainer 
         fullname={portfolioInfo[0].fullname}
         jobTitle={portfolioInfo[0].job_title}
         picture={portfolioInfo[0].picture}
@@ -37,8 +41,13 @@ function SharePortfolio() {
         key={portfolioInfo[0].portfolio_id}
         id={portfolioInfo[0].portfolio_id} 
         />
+        </Col>
+        <Col className="d-flex">
         <Contact handelContact={setOpenModal}/>
         {openModal && <Modal closeModal={setOpenModal}/>}
+        </Col>
+      </Row>
+        
     </div>
   )
 }

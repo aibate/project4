@@ -2,6 +2,8 @@ import React from 'react'
 import { useParams } from "react-router-dom";
 import { useState, useEffect }  from 'react'
 import axios from 'axios'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 function UpdatePortfolio() {
   const {id} = useParams()  
@@ -57,7 +59,8 @@ function UpdatePortfolio() {
       });
   }
 
-  const updatePortfolio = () => {
+  const updatePortfolio = (event) => {
+    event.preventDefault();
     const url = `/api/portfolio/${id}`;
     console.log(url)
     axios.put(url, portfolioInfo)
@@ -71,43 +74,56 @@ function UpdatePortfolio() {
   console.log(portfolioInfo)
   return (
     <div>
-      <div className='<div class="input-group mb-3">'>
-        <input 
-            name='fullname'
-            className='"form-control"'
+        <h3>Update your portfolio</h3>
+      
+      <Form>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Full Name</Form.Label>
+          <Form.Control 
+            type="text"
+            name='fullname' 
             placeholder="Full Name"
             onChange={handelChange}
-            value={portfolioInfo.fullname}></input>
-      </div>
-      
-      <div className='<div class="input-group mb-3">'>
-      
-      <input 
-          name='job_title'
-          placeholder='Job Title'
-          onChange={handelChange}
-          value={portfolioInfo.job_title} 
-          />
-      </div>
-      <div className='<div class="input-group mb-3">'>
-      <input 
-          name='picture'
-          placeholder='Picture URL' 
-          onChange={handelChange}
-          value={portfolioInfo.picture}
-          />
-      </div>
-      <div className='<div class="input-group mb-3">'>
-        <textarea 
-          name='description' 
-          placeholder='Description'
-          onChange={handelChange}
-          value={portfolioInfo.description}
-        />
-      </div>
-      
-      
-      <button className='btn btn-success' onClick={updatePortfolio}>Update</button>
+            value={portfolioInfo.fullname}
+            data-testid="nameInput" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Job Title</Form.Label>
+          <Form.Control 
+            type="text"
+            name='job_title' 
+            placeholder="Job Title"
+            onChange={handelChange}
+            value={portfolioInfo.job_title} 
+            data-testid="titleInput" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Picture URL</Form.Label>
+          <Form.Control 
+            type="text"
+            name='picture' 
+            placeholder='Picture URL' 
+            onChange={handelChange}
+            value={portfolioInfo.picture}
+            data-testid="pictureInput" />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Description</Form.Label>
+          <Form.Control 
+            name='description'
+            placeholder='Description'
+            as="textarea"  
+            onChange={handelChange}
+            value={portfolioInfo.description}
+            data-testid="descriptionTextarea" />
+        </Form.Group>
+        <Button variant="primary" onClick={updatePortfolio} data-testid="submitBtn">
+          Submit
+        </Button>
+      </Form> 
       
     </div>
   )
