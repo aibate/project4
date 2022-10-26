@@ -56,27 +56,37 @@ function CreatePortfolio() {
     }
   return (
     <div>
+      <h3>Create your portfoliosController</h3>
+      <div className='<div class="input-group mb-3">'>
         <input 
-            name='fullname'
-            placeholder="Full Name"
-            onChange={handelChange} 
-            value={portfolioInfo.fullname}
-            data-testid="nameInput"
-        />
+              name='fullname'
+              placeholder="Full Name"
+              onChange={handelChange} 
+              value={portfolioInfo.fullname}
+              data-testid="nameInput"
+          />
+      </div>
+      <div className='<div class="input-group mb-3">'>
         <input 
-            name='job_title'
-            placeholder='Job Title'
-            onChange={handelChange}
-            value={portfolioInfo.jobTitle} 
-            data-testid="titleInput"
-        />
+              name='job_title'
+              placeholder='Job Title'
+              onChange={handelChange}
+              value={portfolioInfo.jobTitle} 
+              data-testid="titleInput"
+          />
+      </div>
+      <div className='<div class="input-group mb-3">'>
         <input 
-            name='picture'
-            placeholder='Picture URL' 
-            onChange={handelChange}
-            values={portfolioInfo.picture}
-            data-testid="pictureInput"
-        />
+              name='picture'
+              placeholder='Picture URL' 
+              onChange={handelChange}
+              values={portfolioInfo.picture}
+              data-testid="pictureInput"
+          />
+      </div>
+        
+        
+      <div className='<div class="input-group mb-3">'> 
         <textarea 
             name='description' 
             placeholder='Description'
@@ -84,11 +94,12 @@ function CreatePortfolio() {
             values={portfolioInfo.description}
             data-testid="descriptionTextarea"
         />
+       </div>
         <button 
           className="btn btn-primary" 
           onClick={createPortfolio}
-          data-testid="submitBtn"
-        >
+          data-testid="submitBtn">
+     
           Submit
         </button>
     </div>

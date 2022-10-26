@@ -1,15 +1,19 @@
 import React from 'react'
 
 function Message(props) {
-    
-    // console.log(props.enquiryInfo)
     const { client_name, email, enquiry} = props.enquiryInfo
     // console.log(contact_id)
   return (
     <div>
-        <p data-testid="clientName">{client_name}</p>
-        <p data-testid="clientEmail">{email}</p>
-        <p data-testid="enquiry">{enquiry}</p>
+       <div className='card'>
+        <div className="card-body" style={{"width": "18rem"}}>
+           
+            <h5 className='card-title' data-testid="clientName">From: {client_name}</h5>
+            <h6 className='card-subtitle mb-2 text-muted' data-testid="clientEmail">Email: {email}</h6>
+            <p className='card-text' data-testid="enquiry">Comment: {enquiry}</p>
+            
+        </div>       
+       </div>
     </div>
   )
 }
