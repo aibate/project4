@@ -2,7 +2,9 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import Modal from './Modal';
+import Modal from './ConfirmationModal';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 function Contact(props) {
     const {id} = useParams()
@@ -42,7 +44,8 @@ function Contact(props) {
             }
         })
     }
-    function createEnquiry(){
+    function createEnquiry(event){
+        event.preventDefault();
         props.handelContact(true)
         axios
         .post("/api/contact", enquiryDetail )
@@ -50,36 +53,51 @@ function Contact(props) {
             
         })
         .catch(error => alert(error.message));
+        setEnquiryDetail({
+            portfolio_id: id,
+        client_name:'',
+        email:'',
+        enquiry:'' 
+        })
     }
     console.log(enquiryDetail)
   return (
-    <div>
-        <div className='<div class="input-group mb-3">'>
-            <input 
+    <div >
+        <Form id="contactContainer">
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Full Name</Form.Label>
+                <Form.Control 
+                type="text"
                 name='client_name'
                 placeholder='Full Name'
                 onChange={handelChange}
-                value={enquiryDetail.client_name} 
+                value={enquiryDetail.client_name}
                 />
-        </div>    
-        <div className='<div class="input-group mb-3">'>
-            <input 
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email</Form.Label>
+                <Form.Control 
+                type="text"
                 name='email'
                 placeholder='Email Address' 
                 onChange={handelChange}
-                values={enquiryDetail.email}
+                value={enquiryDetail.email}
                 />
-        </div>    
-        <div className='<div class="input-group mb-3">'>
-            <textarea 
-                name='enquiry' 
-                placeholder='Enquiry'
-                onChange={handelChange}
-                values={enquiryDetail.enquiry}
-                />
-        </div>    
-        <button className="btn btn-primary" onClick={createEnquiry}>Submit</button>
-        
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Enquiry</Form.Label>
+            <Form.Control 
+              name='enquiry' 
+              placeholder='Enquiry'
+              as="textarea"  
+              onChange={handelChange}
+              value={enquiryDetail.enquiry}
+               />
+          </Form.Group>
+          <Button variant="primary" onClick={createEnquiry} >
+            Submit
+          </Button>
+        </Form>
     </div>
    
   )

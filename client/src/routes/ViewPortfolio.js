@@ -2,6 +2,9 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function ViewPortfolio() {
   // store all portfolio in state
@@ -31,25 +34,32 @@ function ViewPortfolio() {
   return (
     <div>
       <h1>Portfolio list</h1>
-      <ul>  
+     
+      <Row lg={3}>
+
           {AllPortfoliosInfo.map((onePortfolioInfo) => {
             return(
-              <div className='card' >
-                <ul className='list-group list-group-flush'>
-                  <li className='list-group-item' key={onePortfolioInfo.portfolio_id}>
-                    <Link to={ `/portfolio/view/${onePortfolioInfo.portfolio_id}`}>
-                      {onePortfolioInfo.fullname}
-                    </Link>
-                    <Link className='btn btn-success' to={`/portfolio/update/${onePortfolioInfo.portfolio_id}`} >Update</Link>
-                    <button id={onePortfolioInfo.portfolio_id} className='btn btn-danger' onClick={deletePortfolio}>Delete</button>
-                    <Link className="btn btn-info" to={`/client/${onePortfolioInfo.portfolio_id}`} >Share</Link>
-                    <Link className="btn btn-primary" to={`/inbox/${onePortfolioInfo.portfolio_id}/`} >Inbox</Link>
-                  </li>
-                </ul>
-              </div>
-            )
-          })}
-      </ul>
+              <Col className="d-flex">
+              <Card className="flex-fill" style={{ width: '18rem' }}>
+                <Card.Body key={onePortfolioInfo.portfolio_id}>
+                  <Card.Title>{onePortfolioInfo.fullname}</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">{onePortfolioInfo.job_title}</Card.Subtitle>
+                  <Card.Text>
+                    {onePortfolioInfo.description}
+                  </Card.Text>
+                  <Card.Link as={Link} to={ `/portfolio/view/${onePortfolioInfo.portfolio_id}`}>View</Card.Link>
+                  <Card.Link as={Link} to={`/portfolio/update/${onePortfolioInfo.portfolio_id}`}>Update</Card.Link>
+                  <Card.Link as={Link} to={`/client/${onePortfolioInfo.portfolio_id}`} >Share</Card.Link>
+                  <Card.Link as={Link} to={`/inbox/${onePortfolioInfo.portfolio_id}/`} >Inbox</Card.Link>
+                  <button id={onePortfolioInfo.portfolio_id} className='btn btn-danger' onClick={deletePortfolio}>Delete</button>
+                  </Card.Body>
+                </Card>
+              </Col>
+              
+              )
+            })}
+      
+      </Row>
       <Outlet/>
     </div>
     

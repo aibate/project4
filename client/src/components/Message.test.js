@@ -12,6 +12,10 @@ test('render contents from back end and display', ()=> {
     }
     />)
     const clientName = screen.getByTestId('clientName');
+    const clientEmail = screen.getByTestId('clientEmail');
+    const enquiry = screen.getByTestId('enquiry');
     
-    expect(clientName.textContent).toEqual('test');
+    expect(clientName.textContent).toEqual('From: test');
+    expect(clientEmail.textContent).toEqual('Email: test@gamil.com');
+    expect(enquiry.textContent).toEqual('Comment: test');
 })

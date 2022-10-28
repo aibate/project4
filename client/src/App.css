@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  height: 100%;
+  
 }
 
 .App-logo {
@@ -45,9 +47,18 @@ input {
   padding: 5px;
 }
 body {
-  padding:30px
+  padding:30px;
+  height:100%;
+  background-color: #ffffcc;
 }
 .card {
   padding: 5px;
   margin: 2px;
+}
+#contactContainer{
+  /* width: 50%;
+  margin-left: 100px; */
+  margin: 0 auto;
+  padding: 100px;
+
 }
