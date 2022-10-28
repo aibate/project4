@@ -4,9 +4,11 @@ import { useState, useEffect }  from 'react'
 import axios from 'axios'
 import SinglePortfolioViewContainer from './SinglePortfolioViewContainer';
 import Contact from '../components/Contact';
-import Modal from '../components/Modal';
+import ConfirmationModal from '../components/ConfirmationModal';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+// import Button from 'react-bootstrap/Button';
+// import Modal from 'react-bootstrap/Modal';
 
 function SharePortfolio() {
   const {id} = useParams()
@@ -21,7 +23,9 @@ function SharePortfolio() {
     getPortfolioInfoWithId()
   },[])
   const [ openModal, setOpenModal ] = useState(false)
-
+  const handleClose = () => setOpenModal(false);
+  const handleShow = () => setOpenModal(true);
+  
   const getPortfolioInfoWithId = () => {
     const url = `/api/portfolio/${id}`;
     axios.get(url).then(response => {
@@ -43,8 +47,8 @@ function SharePortfolio() {
         />
         </Col>
         <Col className="d-flex">
-        <Contact handelContact={setOpenModal}/>
-        {openModal && <Modal closeModal={setOpenModal}/>}
+        <Contact handelContact={handleShow}/>
+        {openModal && <ConfirmationModal closeModal={handleClose}/>}
         </Col>
       </Row>
         

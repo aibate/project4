@@ -7,9 +7,8 @@ function SinglePortfolioViewContainer(props) {
 
   return (
     <div>
-        
+        <h1>{props.jobTitle}</h1>
         <Image src={props.picture} alt="" roundedCircle></Image>
-        <p>{props.jobTitle}</p>
         <p>{props.description}</p>     
     </div>
   )
