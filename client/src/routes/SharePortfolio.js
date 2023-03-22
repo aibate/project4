@@ -38,7 +38,7 @@ function SharePortfolio() {
         id={portfolioInfo[0].portfolio_id} 
         />
         <Contact handelContact={setOpenModal}/>
-        {openModal && <Modal />}
+        {openModal && <Modal closeModal={setOpenModal}/>}
     </div>
   )
 }

@@ -1,19 +1,22 @@
 import React from 'react'
 
-export default function Modal() {
+export default function Modal(props) {
+    function handleXbutton (){
+        props.closeModal(false)
+    }
   return (
     <div className='modalBackground'>
         <div className='modalContainer'>
-            <button> X </button>
+            
             <div className='title'>
-                <h1> would you like to send this message?</h1>
+               <h1>Thank you for your message.</h1>
             </div>
             <div className='body'>
-                <p>Thank you for your message. We will contact you soon.</p>
+                <p> We will contact you soon.</p>
             </div>
             <div className='footer'>
-                <button> Cancel </button>
-                <button> Submit</button>
+                <button onClick={handleXbutton}> close </button>
+                
             </div>
         </div>
         
