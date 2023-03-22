@@ -44,7 +44,7 @@ app.use(
 app.get('*', (req, res)=> {
     res.setHeader('content-type', 'text/html');
     fs.createReadStream(`${__dirname}/client/build/index.html`).pipe(res);
-})
+});
 
 
 app.listen(port, ()=>console.log(`Listening at localhost:${port}`));

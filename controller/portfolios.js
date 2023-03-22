@@ -6,14 +6,14 @@ router.post('/api/portfolio', (req, res) =>{
   console.log(req.body)
   const { 
     fullname, 
-    job_title, 
     picture, 
+    job_title, 
     description
    } =req.body;
   const sql = `INSERT INTO portfolios (fullname, picture, job_title, description) VALUES($1, $2, $3, $4)`;
-
+   console.log(sql)
   db.query(sql, [ fullname, picture, job_title , description ]).then(() => {
-      console.log(res.json)
+      console.log( "this is the response "+ res.json)
       res.json({});
     }).catch((err) => {
       res.status(500).json({});
