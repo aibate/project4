@@ -13,5 +13,5 @@ test('render contents from back end and display', ()=> {
     />)
     const clientName = screen.getByTestId('clientName');
     
-    expect(clientName.textContent).toEqual('test');
+    expect(clientName.textContent).toEqual('From: test');
 })
