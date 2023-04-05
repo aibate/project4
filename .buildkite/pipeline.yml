@@ -1,3 +1,6 @@
 steps:
-  - label: "Example Test"
-    command: npm install  --save-dev react-scripts && whoami && asdf current nodejs && npm -v
+  - command: "npm install"
+  /Users/ai.bate/Desktop/project4/.buildkite
+    cwd: "/Users/ai.bate/Desktop/project4"
+  - command: "npm test"
+    cwd: "/Users/ai.bate/Desktop/project4/client"
