@@ -1,3 +1,6 @@
 steps:
-  - label: "Example Test"
-    command:  node -v 
+  - name: ':node: Tests'
+    command: node -v
+    plugins:
+      - docker#v3.13.0:
+          image: 'node:16.17.0'
