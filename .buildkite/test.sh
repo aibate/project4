@@ -6,5 +6,5 @@ set -euo pipefail
 
 echo "+++ Running Tests"
 echo
+npm install
 
-node -v
