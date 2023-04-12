@@ -1,5 +1,3 @@
 steps:
-  - command: "npm install"
-    cwd: "/Users/ai.bate/Desktop/project4"
-  - command: "npm test"
-    cwd: "/Users/ai.bate/Desktop/project4/client"
+  - label: "Example Test"
+    command: pwd
