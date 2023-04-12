@@ -1,12 +1,12 @@
 steps:
   - label: "Install Dependencies"
     command:
-      - "npm install"
+      - "asdf install"
     agents:
       queue: "default"
 
   - label: "Build"
     command:
-      - "npm run build"
+      - "npm install"
     agents:
       queue: "default"
