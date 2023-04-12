@@ -1,6 +1,6 @@
 steps:
   - name: ':node: Tests'
-    command: pwd
+  - command: pwd
     plugins:
       - docker#v5.6.0:
           image: 'node:16.17.0'
