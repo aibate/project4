@@ -1,5 +1,4 @@
 steps:
-  - name: ':node: Tests'
   - command: pwd
     plugins:
       - docker#v5.6.0:
