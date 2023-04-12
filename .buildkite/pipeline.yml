@@ -1,5 +1,12 @@
 steps:
-  - command: pwd
-    plugins:
-      - docker#v5.6.0:
-          image: 'node:16.17.0'
+  - label: "Install Dependencies"
+    command:
+      - "npm install"
+    agents:
+      queue: "default"
+
+  - label: "Build"
+    command:
+      - "npm run build"
+    agents:
+      queue: "default"
