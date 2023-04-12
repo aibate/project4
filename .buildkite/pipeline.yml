@@ -1,12 +1,3 @@
 steps:
-  - label: "Install Dependencies"
-    command:
-      - "ls -l $(which node)"
-    agents:
-      queue: "default"
-
-  - label: "Build"
-    command:
-      - "npm install"
-    agents:
-      queue: "default"
+  - command: pwd
+    
