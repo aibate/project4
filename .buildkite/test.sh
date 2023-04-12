@@ -8,5 +8,5 @@ echo "+++ Running Tests"
 echo
 cd client
 npm install
-npm build
+npm run build
 npm test
