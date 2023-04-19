@@ -4,13 +4,15 @@ import axios from 'axios'
 import Message from './Message';
 
 function Inbox() {
-    const {id} = useParams()
+    let { id } = useParams()
     const [ enquiriesInfo, setEnquiriesInfo ] = useState([]);
     useEffect( () => {
+        let isCurrent = true;
         axios.get(`/api/contact/${id}`).then(response =>{
             setEnquiriesInfo(response.data);
         })
-    },[])
+        return () => {isCurrent = false;}
+    },[id])
   console.log(`/api/contact${id}`,enquiriesInfo)
 
   return (
