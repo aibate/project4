@@ -7,9 +7,12 @@ steps:
  
   - input: "Who is releasing the app?"
     depends_on: "build-test"
+    branches: "main"
     fields:
       - text: "Your name"
         key: "name"
 
   - label: "Continue"
+    depends_on: "build-test"
+    branches: "main"
     command: echo "Releasing tha App!"
