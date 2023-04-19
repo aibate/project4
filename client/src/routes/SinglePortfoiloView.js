@@ -15,16 +15,17 @@ function SinglePortfolioView() {
     description:''
   }])
   
+  
   useEffect(()=>{
+    const getPortfolioInfoWithId = () => {
+      const url = `/api/portfolio/${id}`;
+      axios.get(url).then(response => {
+        setPortfolioInfo(response.data)
+      })
+    }
     getPortfolioInfoWithId()
-  },[])
+  },[getPortfolioInfoWithId])
  
-  const getPortfolioInfoWithId = () => {
-    const url = `/api/portfolio/${id}`;
-    axios.get(url).then(response => {
-      setPortfolioInfo(response.data)
-    })
-  }
   
   console.log(portfolioInfo[0].fullname)
   return (
