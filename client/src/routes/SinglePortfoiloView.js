@@ -14,7 +14,7 @@ function SinglePortfolioView() {
     picture:'',
     description:''
   }])
-  
+  // eslint-disable-next-line
   const getPortfolioInfoWithId = () => {
     const url = `/api/portfolio/${id}`;
     axios.get(url).then(response => {
@@ -23,6 +23,7 @@ function SinglePortfolioView() {
   }
   
   useEffect(()=>{
+   
     getPortfolioInfoWithId()
   },[getPortfolioInfoWithId])
  

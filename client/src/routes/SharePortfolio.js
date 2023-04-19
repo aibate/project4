@@ -15,6 +15,7 @@ function SharePortfolio() {
     picture:'',
     description:''
   }])
+  // eslint-disable-next-line
   let getPortfolioInfoWithId = () => {
     const url = `/api/portfolio/${id}`;
     axios.get(url).then(response => {
