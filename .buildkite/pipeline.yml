@@ -1,2 +1,5 @@
 steps:
-  - command: ./.buildkite/test.sh
+  - label: "Build and test"
+    command: ./.buildkite/test.sh
+    cancel_on_build_failing: true
+    timeout_in_minutes: 5
