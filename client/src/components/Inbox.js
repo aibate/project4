@@ -11,7 +11,7 @@ function Inbox() {
         axios.get(`/api/contact/${id}`).then(response =>{
             setEnquiriesInfo(response.data);
         })
-        return () => {isCurrent = false;}
+        return () => { isCurrent = false }
     },[id])
   console.log(`/api/contact${id}`,enquiriesInfo)
 
