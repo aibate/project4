@@ -11,9 +11,10 @@ function UpdatePortfolio() {
     picture:'',
     description:''
   });
+    // eslint-disable-next-line
   useEffect(()=>{
     getData()
-  },[])
+  },[getData])
 
   const getData = () => {
     const url = `/api/portfolio/${id}`;
