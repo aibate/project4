@@ -3,10 +3,13 @@ steps:
     command: ./.buildkite/test.sh
     cancel_on_build_failing: true
     timeout_in_minutes: 5
-  - wait
+    key: "build-test"
+ 
   - input: "Who is releasing the app?"
+    depends_on: "build-test"
     fields:
       - text: "Your name"
         key: "name"
+
   - label: "Continue"
     command: echo "Releasing tha App!"
