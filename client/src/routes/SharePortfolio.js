@@ -15,16 +15,17 @@ function SharePortfolio() {
     picture:'',
     description:''
   }])
-  // eslint-disable-next-line
-  let getPortfolioInfoWithId = () => {
-    const url = `/api/portfolio/${id}`;
-    axios.get(url).then(response => {
-      setPortfolioInfo(response.data)
-    })
-  }
+
+ 
   useEffect(()=>{
+    let getPortfolioInfoWithId = () => {
+      const url = `/api/portfolio/${id}`;
+      axios.get(url).then(response => {
+        setPortfolioInfo(response.data)
+      })
+    }
     getPortfolioInfoWithId()
-  },[getPortfolioInfoWithId])
+  },[id])
   const [ openModal, setOpenModal ] = useState(false)
 
   console.log(portfolioInfo[0].fullname)

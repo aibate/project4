@@ -11,17 +11,18 @@ function UpdatePortfolio() {
     picture:'',
     description:''
   });
-    // eslint-disable-next-line
+   
   useEffect(()=>{
+    const getData = () => {
+      const url = `/api/portfolio/${id}`;
+      axios.get(url).then(response => {
+        setPortfolioInfo(response.data[0])
+      })
+    }
     getData()
-  },[getData])
-// eslint-disable-next-line
-  const getData = () => {
-    const url = `/api/portfolio/${id}`;
-    axios.get(url).then(response => {
-      setPortfolioInfo(response.data[0])
-    })
-  }
+  },[id])
+
+ 
   function handelChange(event){
     const { value, name } = event.target;
     setPortfolioInfo((prevValue) => {

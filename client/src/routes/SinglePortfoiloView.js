@@ -14,18 +14,19 @@ function SinglePortfolioView() {
     picture:'',
     description:''
   }])
-  // eslint-disable-next-line
+  
+  
+  useEffect(()=>{
+
   const getPortfolioInfoWithId = () => {
     const url = `/api/portfolio/${id}`;
     axios.get(url).then(response => {
       setPortfolioInfo(response.data)
     })
   }
-  
-  useEffect(()=>{
    
     getPortfolioInfoWithId()
-  },[getPortfolioInfoWithId])
+  },[id])
  
   
   console.log(portfolioInfo[0].fullname)
