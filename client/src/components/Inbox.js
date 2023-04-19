@@ -9,6 +9,7 @@ function Inbox() {
     useEffect( () => {
         let isCurrent = true;
         axios.get(`/api/contact/${id}`).then(response =>{
+          if (!isCurrent) return
             setEnquiriesInfo(response.data);
         })
         return () => { isCurrent = false }

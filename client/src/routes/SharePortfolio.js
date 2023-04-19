@@ -15,17 +15,17 @@ function SharePortfolio() {
     picture:'',
     description:''
   }])
-  useEffect(()=>{
-    getPortfolioInfoWithId()
-  },[])
-  const [ openModal, setOpenModal ] = useState(false)
-
-  const getPortfolioInfoWithId = () => {
+  let getPortfolioInfoWithId = () => {
     const url = `/api/portfolio/${id}`;
     axios.get(url).then(response => {
       setPortfolioInfo(response.data)
     })
   }
+  useEffect(()=>{
+    getPortfolioInfoWithId()
+  },[getPortfolioInfoWithId])
+  const [ openModal, setOpenModal ] = useState(false)
+
   console.log(portfolioInfo[0].fullname)
   return (
     <div>
