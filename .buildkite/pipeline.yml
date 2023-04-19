@@ -4,6 +4,8 @@ steps:
     cancel_on_build_failing: true
     timeout_in_minutes: 5
 
+  - wait
+  
   - input: "Who is releasing the app?"
       fields:
         - text: "Your name"
