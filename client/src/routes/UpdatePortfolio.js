@@ -15,7 +15,7 @@ function UpdatePortfolio() {
   useEffect(()=>{
     getData()
   },[getData])
-
+// eslint-disable-next-line
   const getData = () => {
     const url = `/api/portfolio/${id}`;
     axios.get(url).then(response => {
